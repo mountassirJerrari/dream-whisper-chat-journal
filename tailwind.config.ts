@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,22 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				dream: {
+					purple: '#9b87f5',
+					darkPurple: '#7E69AB',
+					deepPurple: '#6E59A5',
+					night: '#1A1F2C',
+					lightPurple: '#D6BCFA',
+					softGreen: '#F2FCE2',
+					softYellow: '#FEF7CD',
+					softOrange: '#FEC6A1',
+					softPurple: '#E5DEFF',
+					softPink: '#FFDEE2',
+					softPeach: '#FDE1D3',
+					softBlue: '#D3E4FD',
+					softGray: '#F1F0FB',
+					vividPurple: '#8B5CF6',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +101,30 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.8' }
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-1000px 0' },
+					'100%': { backgroundPosition: '1000px 0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
+				'shimmer': 'shimmer 2s infinite linear'
+			},
+			backgroundImage: {
+				'gradient-dreams': 'linear-gradient(to right bottom, #9b87f5, #7E69AB, #6E59A5, #D6BCFA)',
+				'gradient-night': 'linear-gradient(to bottom, #1A1F2C, #2C3548)',
 			}
 		}
 	},
