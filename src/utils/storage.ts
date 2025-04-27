@@ -155,7 +155,7 @@ export const initializeStorageWithSampleData = (): void => {
       {
         id: '3',
         dreamId: '1',
-        content: 'Is there anything in your waking life that's making you feel restricted or confined lately?',
+        content: "Is there anything in your waking life that's making you feel restricted or confined lately?",
         sender: 'ai',
         timestamp: new Date(Date.now() + 120000).toISOString() // Two minutes later
       }
