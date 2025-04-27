@@ -1,5 +1,5 @@
-
 import { DreamEntry, ChatMessage } from './dreamUtils';
+import { getInitialQuestion } from './chatUtils';
 
 const DREAMS_STORAGE_KEY = 'dreamweaver_dreams';
 const CHATS_STORAGE_KEY = 'dreamweaver_chats';
