@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DreamEntry, ChatMessage, generateId } from '@/utils/dreamUtils';
 import { getDreamChats, saveChat } from '@/utils/storage';
-import { generateResponse } from '@/utils/chatUtils';
+import { generateResponse, getInitialQuestion } from '@/utils/chatUtils';
 
 interface ChatInterfaceProps {
   dream: DreamEntry;
@@ -14,7 +14,7 @@ interface ChatInterfaceProps {
 
 const StarBackground = () => (
   <div className="fixed inset-0 overflow-hidden pointer-events-none">
-    {[...Array(50)].map((_, i) => (
+    {[...Array(100)].map((_, i) => (
       <div
         key={i}
         className="absolute rounded-full bg-white"
@@ -40,7 +40,21 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ dream }) => {
   useEffect(() => {
     const loadChats = () => {
       const existingChats = getDreamChats(dream.id);
-      setMessages(existingChats);
+      
+      // If there are no messages in the chat yet, start with an initial AI question
+      if (existingChats.length === 0) {
+        const initialMessage: ChatMessage = {
+          id: generateId(),
+          dreamId: dream.id,
+          content: getInitialQuestion(dream),
+          sender: 'ai',
+          timestamp: new Date().toISOString()
+        };
+        saveChat(initialMessage);
+        setMessages([initialMessage]);
+      } else {
+        setMessages(existingChats);
+      }
     };
     
     loadChats();
@@ -82,7 +96,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ dream }) => {
   };
   
   return (
-    <div className="relative flex flex-col h-[calc(100vh-14rem)] bg-gradient-to-b from-gray-900 to-gray-950">
+    <div className="relative flex flex-col h-[calc(100vh-14rem)] bg-gradient-to-b from-gray-900 to-black">
       <StarBackground />
       
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
