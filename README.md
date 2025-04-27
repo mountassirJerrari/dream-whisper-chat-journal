@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+# Dream Whisper - Journal de Rêves Mobile
 
-## Project info
+## Technologies Utilisées
 
-**URL**: https://lovable.dev/projects/8ff8fbf0-5e82-40a9-bdc6-568cd96962a8
+- **Frontend**: React + TypeScript + Vite
+- **UI/UX**: 
+  - Tailwind CSS pour le styling
+  - shadcn/ui pour les composants
+- **Mobile**: Capacitor pour la conversion en application native Android
+- **État de l'Application**: État local React (useState, useContext)
 
-## How can I edit this code?
+## Structure du Projet
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/8ff8fbf0-5e82-40a9-bdc6-568cd96962a8) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+├── src/
+│   ├── components/     # Composants React réutilisables
+│   ├── hooks/         # Hooks React personnalisés
+│   ├── utils/         # Fonctions utilitaires
+│   └── types/         # Types TypeScript
+├── android/           # Code natif Android généré par Capacitor
+└── public/           # Assets statiques
 ```
 
-**Edit a file directly in GitHub**
+## Prérequis de Développement
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Node.js et npm
+- Android Studio
+- JDK (Java Development Kit)
+- Android SDK
 
-**Use GitHub Codespaces**
+## Installation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+# Installation des dépendances
+npm install
 
-## What technologies are used for this project?
+# Lancement en mode développement
+npm run dev
 
-This project is built with:
+# Build du projet
+npm run build
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Déploiement Android
 
-## How can I deploy this project?
+```bash
+# Build du projet web
+npm run build
 
-Simply open [Lovable](https://lovable.dev/projects/8ff8fbf0-5e82-40a9-bdc6-568cd96962a8) and click on Share -> Publish.
+# Ajout de la plateforme Android
+npx cap add android
 
-## Can I connect a custom domain to my Lovable project?
+# Synchronisation des fichiers
+npx cap sync
 
-Yes, you can!
+# Ouverture dans Android Studio
+npx cap open android
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Fonctionnalités Techniques Implémentées
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- Interface de chat responsive
+- Gestion d'état local pour les messages
+- Adaptation mobile native via Capacitor
+- Support du mode sombre
+- Composants UI réutilisables
+- Hooks personnalisés pour la gestion du responsive design
+
+## Notes Techniques
+
+- L'application est entièrement frontend, sans backend
+- Les données sont stockées localement
+- Les réponses sont générées à partir d'un tableau statique de réponses prédéfinies
+- L'interface imite un chat mais n'utilise pas d'IA réelle
+
+## Configuration Capacitor
+
+Le fichier `capacitor.config.ts` contient les configurations essentielles pour le build mobile :
+
+```typescript
+{
+  appId: 'com.lovable.dreamwhisper',
+  appName: 'dream-whisper-chat-journal',
+  webDir: 'dist',
+  android: {
+    backgroundColor: '#121212'
+  }
+}
+```
